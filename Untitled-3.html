@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的网页</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        header, nav, main, footer {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .success-message {
+            color: green;
+        }
+
+        .failure-message {
+            color: red;
+        }
+    </style>
+    <script>
+        function showLoginForm() {
+            document.getElementById("login-link-page").style.display = "none";
+            document.getElementById("login-form-page").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到磁感应强度测量实验</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>测试项目</h2>
+            <p>关于各类磁感应强度的测试</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 通电螺线管</p>
+        <p>&copy; 单线圈</p>
+        <p>&copy; 亥姆霍兹线圈</p>
+        <p>&copy; 反亥姆霍兹线圈</p>
+    </footer>
+
+    <main>
+        <div id="login-result" style="display: none;"></div>
+
+        <div id="login-link-page">
+            <h2>欢迎登录</h2>
+            <p>点击下面按钮进行登录：</p>
+            <button onclick="showLoginForm()">登录</button>
+        </div>
+
+        <div id="login-form-page" style="display: none;">
+            <h2>账户登录</h2>
+            <form id="login-form">
+                <label for="username">用户名：</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">密码：</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <button type="submit">登录</button>
+            </form>
+        </div>
+
+        <div id="login-success" style="display: none;">
+            <h2>登录成功</h2>
+            <p>恭喜您，登录成功！</p>
+            
+        </div>
+
+        <div id="login-failure" style="display: none;">
+            <h2>登录失败</h2>
+            <p>对不起，登录失败，请检查用户名和密码。</p>
+            <button onclick="retryLogin()">重新登录</button>
+        </div>
+    </main>
+
+    <script>
+        function retryLogin() {
+            document.getElementById("login-link-page").style.display = "block";
+            document.getElementById("login-form-page").style.display = "none";
+            document.getElementById("login-success").style.display = "none";
+            document.getElementById("login-failure").style.display = "none";
+        }
+
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // 这里可以添加你自己的登录验证逻辑，这里只是简单示例
+            if (username === "admin" && password === "password") {
+                document.getElementById("login-link-page").style.display = "none";
+                document.getElementById("login-form-page").style.display = "none";
+                document.getElementById("login-success").style.display = "block";
+                document.getElementById("login-success").classList.add("success-message"); // 添加绿色样式
+            } else {
+                document.getElementById("login-link-page").style.display = "none";
+                document.getElementById("login-form-page").style.display = "none";
+                document.getElementById("login-failure").style.display = "block";
+                document.getElementById("login-failure").classList.add("failure-message"); // 添加红色样式
+            }
+        });
+    </script>
+</body>
+</html>
+
